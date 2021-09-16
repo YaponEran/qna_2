@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'rexml', '~> 3.2', '>= 3.2.5'
 
 gem 'slim-rails'
-gem 'bootstrap', '~> 5.0.0.beta2'
+gem 'bootstrap', '~> 5.0.0.beta1'
 gem 'devise'
 
 # Use Active Storage variant
