@@ -123,7 +123,7 @@ RSpec.describe QuestionsController, type: :controller do
   describe "DELETE #destroy" do
     before { login(user) }
     
-    let!(:question) { create(:question) }
+    let!(:question) { create(:question, user: user) }
     it "deletes question form Databse" do
       expect{ delete :destroy, params: { id: question } }.to change(Question, :count).by(-1)
     end

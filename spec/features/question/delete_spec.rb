@@ -17,6 +17,7 @@ feature "Authenticated User can delete", %q{
     expect(page).to have_content question.title
     click_on "Delete"
     expect(page).to_not have_content question.title
+    expect(page).to_not have_content question.body
     expect(page).to have_content "Your questin was succeessfylly deleted!"
   end
 

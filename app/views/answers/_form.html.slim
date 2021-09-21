@@ -1,0 +1,9 @@
+=render "shared/errors", resource: @answer
+
+= form_with model: [@question, @answer], local: true, class: "col-4" do |f|
+  p
+    =f.label :body, class: 'form-label'
+    =f.text_field :body, class: 'form-control'
+  p
+    =f.submit "Answer", class: "btn btn-primary"
+       
