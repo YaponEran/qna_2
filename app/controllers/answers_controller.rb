@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
 
-  before_action :authenticate_user!, except: [:create, :destroy, :edit, :update]
+  before_action :authenticate_user!
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
   before_action :set_question, only: [:new, :create]
 
