@@ -25,7 +25,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'rexml', '~> 3.2', '>= 3.2.5'
 
 gem 'slim-rails'
-gem 'bootstrap', '~> 5.0.0.beta2'
+gem 'bootstrap', '~> 5.0.0.beta1'
+gem 'devise'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -59,6 +60,7 @@ group :test do
   gem 'webdrivers'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'rails-controller-testing'
+  gem 'launchy'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

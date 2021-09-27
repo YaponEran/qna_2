@@ -1,2 +1,7 @@
-.container
-  h1= "Hello"
+-@questions.each do |q|
+  div.card.col-4.mt-2
+    div.card-body
+      h1= link_to q.title, question_path(q), class: "font-monospace text-decoration-none"
+      p= q.body
+
+p= link_to "Ask question", new_question_path, class: "btn btn-primary mt-3"
