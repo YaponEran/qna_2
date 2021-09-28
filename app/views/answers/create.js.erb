@@ -1,0 +1,11 @@
+let answerErrors = document.querySelector('.answer-errors')
+
+answerErrors.innerHTML = '<%=  render 'shared/errors', resource: @answer %>';
+
+<% if @answer.present? %>
+  let answers = document.querySelector('.answers')
+  answers.innerHTML = '<%= j render @answer %>'
+
+  let answer_input = document.querySelector("#answer_body")
+  answer_input.value = ""
+<% end %>

@@ -15,15 +15,16 @@ feature "Authenticates user can create", %q{
       visit question_path(question)
     end
 
-    scenario "user can create answer" do
+    scenario "user can create answer", js: true do
       fill_in "Body", with: "Some answer"
       click_on "Answer"
-
-      expect(page).to have_content "Some answer"
-      expect(page).to have_content "Your answer successfully created"
+      
+      within '.answers' do
+        expect(page).to have_content "Some answer"
+      end
     end
 
-    scenario "user with invalid attribute tries create answer" do
+    scenario "user with invalid attribute tries create answer", js: true do
       click_on "Answer"
       expect(page).to have_content "Body can't be blank"
     end

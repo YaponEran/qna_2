@@ -1,6 +1,6 @@
 = render 'shared/errors', resource: @question
 
-= form_with model: @question, local: true, class: 'col-4' do |f|
+= form_for @question, remote: true, html: { class: "col-4"} do |f|
   p
     =f.label :title, class: 'form-label'
     =f.text_field :title, class: 'form-control'

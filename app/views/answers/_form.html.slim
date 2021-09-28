@@ -1,9 +1,10 @@
-=render "shared/errors", resource: @answer
+.answer-errors
+  =render 'shared/errors', resource: @answer
 
-= form_with model: [@question, @answer], local: true, class: "col-4" do |f|
+= form_for [@question, @answer], remote: true, html: { class: "col-4"} do |f|
   p
     =f.label :body, class: 'form-label'
-    =f.text_field :body, class: 'form-control'
+    =f.text_area :body, class: 'form-control'
   p
     =f.submit "Answer", class: "btn btn-primary"
        
