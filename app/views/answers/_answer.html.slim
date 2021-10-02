@@ -1,9 +1,17 @@
--@question.answers.each do |answer|
-    -if answer.body.present?
-      div.card.col-5.mt-2
-        div.card-body
-          p.text-primary= answer.body
-          -if answer.user&.author_of?(answer)
-            small.text-warning= "Author: #{answer.user.email}"
-          -if current_user&.author_of?(answer)
-            p= link_to "Delete answer", answer_path(answer), method: :delete, data: { confirm: "Are you sure" }, class: 'btn btn-danger mt-2'
+-if answer.body.present?
+  div.card.col-5.mt-2
+    div.card-body
+      p.text-primary= answer.body
+      -if answer.user&.author_of?(answer)
+        small.text-warning= "Author: #{answer.user.email}"
+      -if current_user&.author_of?(answer)
+        p= link_to "Delete answer", answer_path(answer), method: :delete, data: { confirm: "Are you sure" }, class: 'btn btn-danger mt-2'
+
+      -if current_user&.author_of?(answer)
+        = link_to "Edit answer", "#", class: "btn btn-outline-secondary edit-answer-link", data: { answer_id: answer.id }
+        =form_for answer, remote: true, html: { class: 'col-4 hidden', id: "edit-answer-#{answer.id}" } do |f|
+          p
+            =f.label :body, class: 'form-label'
+            =f.text_area :body, class: 'form-control'
+          p
+            =f.submit "Save", class: 'btn btn-warning'

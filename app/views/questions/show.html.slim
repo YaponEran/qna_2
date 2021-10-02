@@ -10,15 +10,8 @@ hr
 h4.text-danger= "[Question Answers↴"
 
 .answers
-  -@question.answers.each do |answer|
-    -if answer.body.present?
-      div.card.col-5.mt-2
-        div.card-body
-          p.text-primary= answer.body
-          -if answer.user&.author_of?(answer)
-            small.text-warning= "Author: #{answer.user.email}"
-          -if current_user&.author_of?(answer)
-            p= link_to "Delete answer", answer_path(answer), method: :delete, data: { confirm: "Are you sure" }, class: 'btn btn-danger mt-2'
+  =render @question.answers
+
 
 -if user_signed_in?
   div.mt-4

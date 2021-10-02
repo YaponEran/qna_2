@@ -1,10 +1,7 @@
 let answerErrors = document.querySelector('.answer-errors')
 answerErrors.innerHTML = '<%=  render 'shared/errors', resource: @answer %>'
 
-<% if @answer.persisted? %>
+<% if !@answer.errors.present? %>
   let answers = document.querySelector('.answers')
-  answers.insertAdjacentHTML('beforeEnd', '<%= j render @answer %>')
-
-  let answer_input = document.querySelector(".new-answer #answer_body")
-  answer_input.value = ""
+  answers.innerHTML = '<%= j render @question.answers %>'
 <% end %>

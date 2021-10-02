@@ -1,7 +1,7 @@
 .answer-errors
   =render 'shared/errors', resource: @answer
 
-= form_for [@question, @answer], remote: true, html: { class: "col-4"} do |f|
+= form_for [@question, @answer], remote: true, html: { class: "col-4 new-answer"} do |f|
   p
     =f.label :body, class: 'form-label'
     =f.text_area :body, class: 'form-control'
