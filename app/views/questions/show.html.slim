@@ -1,5 +1,6 @@
-h1= @question.title
-p= @question.body
+.questions
+  =render 'edit_form'
+  
 small.text-black-50 style="width:150px; display: block"= "Author of question: #{@question.user.email}"
 
 -if current_user&.author_of?(@question)

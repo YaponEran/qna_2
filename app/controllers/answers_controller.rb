@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_answer, only: [:show, :edit, :update, :destroy]
+  before_action :set_answer, only: [:show, :edit, :update, :destroy, :choose_best]
   before_action :set_question, only: [:create]
   # before_action :ensure_current_user_author_of_answer!, only: [:create, :update]
 
@@ -26,6 +26,11 @@ class AnswersController < ApplicationController
   def destroy
     @answer.destroy if current_user.author_of?(@answer)
     # notice: "Your answer successfully deleted"
+  end
+
+  def choose_best
+    @answer.update_to_best!
+    @question = @answer.question
   end
 
   private

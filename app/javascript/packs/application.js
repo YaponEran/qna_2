@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "../front-scripts/answer"
+import "../front-scripts/question"
 
 Rails.start()
 Turbolinks.start()

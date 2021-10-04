@@ -18,6 +18,7 @@ feature "User can edit answers", %q{
     visit question_path(question)
     expect(page).to have_link "Edit answer"
     click_on "Edit answer"
+
     within '.answers' do
       fill_in "Body", with: "Edited answer"
       click_on "Save"
@@ -27,7 +28,11 @@ feature "User can edit answers", %q{
     end
   end
 
-  scenario "Authenticated user tries to edit some one's answer"
+  scenario "Authenticated user tries to edit some one's answer" do
+    sign_in(other_user)
+    visit question_path(question)
+    expect(page).to_not have_link "Edit answer"
+  end
 
   scenario "Un Authenticated user tried edit answer" do 
     visit question_path(question)

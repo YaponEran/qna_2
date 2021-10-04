@@ -2,6 +2,10 @@
   div.card.col-5.mt-2{data-answer-node-id="#{answer.id}"}
     div.card-body
       p.text-primary= answer.body
+      
+      -if !answer.best? && current_user&.author_of?(answer.question)
+        =link_to "♥", choose_best_answer_path(answer),  method: :patch, remote: true, class: 'text-danger text-none'
+
       -if answer.user&.author_of?(answer)
         small.text-warning= "Author: #{answer.user.email}"
       -if current_user&.author_of?(answer)
@@ -9,6 +13,7 @@
 
       -if current_user&.author_of?(answer) && answer.persisted?
         = link_to "Edit answer", "#", class: "btn btn-outline-secondary edit-answer-link", data: { answer_id: answer.id }
+
         =form_for answer, remote: true, html: { class: 'col-4 hidden', id: "edit-answer-#{answer.id}" } do |f|
           p
             =f.label :body, class: 'form-label'
