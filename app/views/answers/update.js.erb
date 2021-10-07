@@ -1,7 +1,7 @@
-let answerErrors = document.querySelector('.answer-errors')
+var answerErrors = document.querySelector('.answer-errors')
 answerErrors.innerHTML = '<%=  render 'shared/errors', resource: @answer %>'
 
 <% if !@answer.errors.present? %>
-  let answers = document.querySelector('.answers')
+  var answers = document.querySelector('.answers')
   answers.innerHTML = '<%= j render @question.answers %>'
 <% end %>

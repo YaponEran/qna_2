@@ -2,6 +2,9 @@
   div.card.col-5.mt-2{data-answer-node-id="#{answer.id}"}
     div.card-body
       p.text-primary= answer.body
+
+      -if answer.best
+        p.text-success= "The best answer"
       
       -if !answer.best? && current_user&.author_of?(answer.question)
         =link_to "♥", choose_best_answer_path(answer),  method: :patch, remote: true, class: 'text-danger text-none'
