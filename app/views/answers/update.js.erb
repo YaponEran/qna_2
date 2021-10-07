@@ -1,0 +1,7 @@
+var answerErrors = document.querySelector('.answer-errors')
+answerErrors.innerHTML = '<%=  render 'shared/errors', resource: @answer %>'
+
+<% if !@answer.errors.present? %>
+  var answers = document.querySelector('.answers')
+  answers.innerHTML = '<%= j render @question.answers %>'
+<% end %>

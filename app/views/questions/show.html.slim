@@ -1,5 +1,6 @@
-h1= @question.title
-p= @question.body
+.questions
+  =render 'edit_form'
+  
 small.text-black-50 style="width:150px; display: block"= "Author of question: #{@question.user.email}"
 
 -if current_user&.author_of?(@question)
@@ -8,15 +9,10 @@ small.text-black-50 style="width:150px; display: block"= "Author of question: #{
 hr
 
 h4.text-danger= "[Question Answers↴"
--@question.answers.each do |answer|
-  -if answer.body.present?
-    div.card.col-5.mt-2
-      div.card-body
-        p.text-primary= answer.body
-        -if answer.user&.author_of?(answer)
-          small.text-warning= "Author: #{answer.user.email}"
-        -if current_user&.author_of?(answer)
-          p= link_to "Delete answer", answer_path(answer), method: :delete, data: { confirm: "Are you sure" }, class: 'btn btn-danger mt-2'
+
+.answers
+  =render @question.answers
+
 
 -if user_signed_in?
   div.mt-4

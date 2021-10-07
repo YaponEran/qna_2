@@ -1,0 +1,9 @@
+var questionErrors = document.querySelector('.question-errors')
+questionErrors.innerHTML = '<%=  render 'shared/errors', resource: @question %>'
+
+<% unless @question.errors.present? %>
+  var questions = document.querySelector('.questions')
+  questions.innerHTML = "<%= j render 'edit_form' %>"
+<% end %>
+
+

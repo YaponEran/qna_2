@@ -1,0 +1,17 @@
+.question-errors
+
+h1.q_title= @question.title
+p.q_body= @question.body
+
+-if current_user&.author_of?(@question) && @question.persisted?
+  =link_to "Edit question", "#", class: "btn btn-outline-secondary edit-question-link"
+  =form_for @question, html: { class: "col-4 edit-question-form hidden"}, remote: true do |f|
+    p
+      =f.label :title, class: "form-label"
+      =f.text_field :title, class: "form-control"
+    p
+      =f.label :body, class: "form-label"
+      =f.text_area :body, class: "form-control"
+              
+    p
+      =f.submit "Save question", class: "btn btn-warning"
