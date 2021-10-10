@@ -3,15 +3,13 @@ document.addEventListener('turbolinks:load', ()=>{
 
     if(questionsEdit){
         questionsEdit.addEventListener('click', (event)=>{
-            event.preventDefault();
-            
             let { target } = event
+
+            event.preventDefault()
 
             let questionForm = document.querySelector(".edit-question-form")
             target.classList.add('hidden')
             questionForm.classList.remove('hidden')
-
-            console.log("hello")
         })
     }
 })
