@@ -27,7 +27,7 @@ feature "Authenticates user can create", %q{
     scenario "Answers with attached file" do
       fill_in "Body", with: "Some answer"
       attach_file "File", ["#{Rails.root}/spec/rails_helper.rb", "#{Rails.root}/spec/spec_helper.rb"]
-      click_on "Asnwer"
+      click_on "Answer"
 
       within ".answers" do
         expect(page).to have_link 'rails_helper.rb'
