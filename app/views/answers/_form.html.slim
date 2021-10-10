@@ -5,6 +5,9 @@
   p
     =f.label :body, class: 'form-label'
     =f.text_area :body, class: 'form-control'
+  p 
+    =f.label :files, class: "form-label"
+    =f.file_field :files, multiple: true, class: "form-control"
   p
     =f.submit "Answer", class: "btn btn-primary"
        

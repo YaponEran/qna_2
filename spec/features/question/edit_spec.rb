@@ -27,6 +27,24 @@ feature "User can edit question", %q{
       end
     end
 
+    scenario "can edit question with attached file" do
+      sign_in(author)
+      visit question_path(question)
+      click_on "Edit question"
+
+      within ".questions" do
+        fill_in "Title", with: "Edited question title"
+        fill_in "Body", with: "Edited question body"
+        attach_file "File", ["#{Rails.root}/spec/rails_helper.rb", "#{Rails.root}/spec/spec_helper.rb"]
+        click_on "Save question"
+
+        expect(page).to have_content "Edited question title"
+        expect(page).to have_content "Edited question body"
+        expect(page).to have_link 'rails_helper.rb'
+        expect(page).to have_link 'spec_helper.rb'
+      end
+    end
+
     scenario "tries edit some's question" do 
       sign_in(other_user)
       visit question_path(question)
