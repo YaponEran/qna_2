@@ -2,7 +2,6 @@
   div.card.col-5.mt-2{data-answer-node-id="#{answer.id}"}
     div.card-body
       p.text-primary= answer.body
-
       =render "shared/files", resource: answer
 
       -if answer.best
