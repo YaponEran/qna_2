@@ -27,6 +27,7 @@ gem 'rexml', '~> 3.2', '>= 3.2.5'
 gem 'slim-rails'
 gem 'bootstrap', '~> 5.0.0.beta1'
 gem 'devise'
+gem "aws-sdk-s3", require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
