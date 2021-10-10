@@ -4,6 +4,9 @@
       p.text-primary= answer.body
 
       =render "shared/files", resource: answer
+
+      -if answer.best
+        p.text-success= "The best answer"
       
       -if !answer.best? && current_user&.author_of?(answer.question)
         =link_to "♥", choose_best_answer_path(answer),  method: :patch, remote: true, class: 'text-danger text-none'
