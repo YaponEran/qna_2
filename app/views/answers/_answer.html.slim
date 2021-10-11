@@ -3,6 +3,14 @@
     div.card-body
       p.text-primary= answer.body
       =render "shared/files", resource: answer
+      =render "links/linkshow", resource: answer
+
+      / -if answer.links.present?
+      /   .links.card.p-2.mt-2.col-4
+      /     p.text-success.mt-2 Links
+      /     ul.list-group
+      /       -answer.links.each do |link|
+      /         i.list-group-item= link_to link.name, link.url
 
       -if answer.best
         p.text-success= "The best answer"

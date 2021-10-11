@@ -43,7 +43,7 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:body, :question_id, files: [])
+    params.require(:answer).permit(:body, :question_id, files: [], links_attributes: [:name, :url])
   end
 
   def ensure_current_user_author_of_answer!

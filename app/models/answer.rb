@@ -5,6 +5,9 @@ class Answer < ApplicationRecord
 
   has_many_attached :files
 
+  has_many :links, dependent: :destroy, as: :linkable
+  accepts_nested_attributes_for :links, reject_if: :all_blank 
+
   default_scope { order(best: :desc) }
   
   validates :body, presence: true
