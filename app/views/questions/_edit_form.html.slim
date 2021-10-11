@@ -3,6 +3,8 @@
 h1.q_title= @question.title
 p.q_body= @question.body
 
+=render 'links/linkshow', resource: @question
+
 -if current_user&.author_of?(@question)
   p= link_to "Delete", question_path(@question), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" }
 
@@ -23,6 +25,13 @@ small.text-black-50 style="width:150px; display: block"= "Author of question: #{
     p 
       =f.label :files, class: "form-label"
       =f.file_field :files, multiple: true, class: "form-control"
+
+    p= :Links
+    p
+      =f.fields_for :links do |link|
+        =render 'links/fields', f: link
+      .links
+        = link_to_add_association 'add link', f, :links, partial: 'links/fields', class: "btn btn-outline-warning"
               
     p
       =f.submit "Save question", class: "btn btn-warning"
