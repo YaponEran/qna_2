@@ -1,0 +1,4 @@
+-@awards.each do |award|
+  p= "Award name: #{award.title}"
+  p= "The to question: #{award.question.title}"
+  = image_tag url_for(award.image), title: award.title, height: '30', width: '30'

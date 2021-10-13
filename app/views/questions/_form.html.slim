@@ -18,6 +18,16 @@
       =render 'links/fields', f: l
     links
       = link_to_add_association 'add link', f, :links, partial: 'links/fields', class: "btn btn-outline-warning"
+  
+  p Awards:
+  p
+    = f.fields_for :award do |a|
+      p
+        =a.label :title, "Award title",class: "form-label"
+        =a.text_field :title, class: "form-control"
+      p
+        =a.label :image, class: "form-label"
+        =a.file_field :image, class: "form-control"
 
   =f.submit 'Ask', class: 'btn btn-primary'
   

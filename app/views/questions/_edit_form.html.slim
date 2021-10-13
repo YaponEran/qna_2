@@ -3,6 +3,11 @@
 h1.q_title= @question.title
 p.q_body= @question.body
 
+-if @question.award
+  p= "award name: #{@question.award.title}"
+  = image_tag url_for(@question.award.image), title: @question.award.title, height: '30', width: '30'
+
+
 =render 'links/linkshow', resource: @question
 
 -if current_user&.author_of?(@question)
