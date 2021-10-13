@@ -10,6 +10,9 @@ import "channels"
 import "../front-scripts/answer"
 import "../front-scripts/question"
 
+require("jquery")
+require("@nathanvda/cocoon")
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

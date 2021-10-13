@@ -8,6 +8,13 @@
   p 
     =f.label :files, class: "form-label"
     =f.file_field :files, multiple: true, class: "form-control"
+
+  p= :Links
+  p
+    =f.fields_for :links do |link|
+      =render 'links/fields', f: link
+    .links
+      = link_to_add_association 'add link', f, :links, partial: 'links/fields', class: "btn btn-outline-warning"
   p
     =f.submit "Answer", class: "btn btn-primary"
        

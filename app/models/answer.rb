@@ -5,6 +5,9 @@ class Answer < ApplicationRecord
 
   has_many_attached :files
 
+  has_many :links, dependent: :destroy, as: :linkable
+  accepts_nested_attributes_for :links, reject_if: :all_blank 
+
   default_scope { order(best: :desc) }
   
   validates :body, presence: true
@@ -16,6 +19,7 @@ class Answer < ApplicationRecord
     Answer.transaction do
       best_answer&.update(best: false)
       update(best: true)
+      question.set_award!(user)
     end
   end
 end

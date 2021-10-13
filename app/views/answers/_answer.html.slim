@@ -3,6 +3,8 @@
     div.card-body
       p.text-primary= answer.body
       =render "shared/files", resource: answer
+      =render "links/linkshow", resource: answer
+
 
       -if answer.best
         p.text-success= "The best answer"
@@ -25,6 +27,13 @@
           p 
             =f.label :files, class: "form-label"
             =f.file_field :files, multiple: true, class: "form-control"
+
+          p= :Links
+          p 
+            =f.fields_for :links do |link|
+              =render 'links/fields', f: link
+            .links
+              = link_to_add_association 'add link', f, :links, partial: 'links/fields', class: "btn btn-outline-warning"
           p
             =f.submit "Save", class: 'btn btn-warning'
           
