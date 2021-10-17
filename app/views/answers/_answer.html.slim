@@ -5,6 +5,14 @@
       =render "shared/files", resource: answer
       =render "links/linkshow", resource: answer
 
+      - if user_signed_in? && !current_user&.author_of?(answer)
+        .voting
+          =link_to "👍 Vote up", vote_up_answer_path(answer), method: :patch, data: { type: :json }, title: "Vote up", remote: true, class: "btn"
+          .raiting
+            span.text-center= answer.raiting
+          =link_to "👎 Vote down", vote_down_answer_path(answer), method: :patch, data: { type: :json }, title: "Vote down", remote: true, class: "btn"
+          =link_to "👌 Vote reset", vote_reset_answer_path(answer), method: :delete, data: { type: :json }, title: "Vote reset", remote: true, class: "btn"
+
 
       -if answer.best
         p.text-success= "The best answer"
