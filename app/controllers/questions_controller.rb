@@ -13,6 +13,8 @@ class QuestionsController < ApplicationController
   def show
     @answer = @question.answers.new
     @answer.links.new
+    gon.question_id = @question.id
+    gon.question_author_id = @question.user_id
   end
 
   def new

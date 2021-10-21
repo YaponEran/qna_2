@@ -41,6 +41,32 @@ feature "Authenticates user can create", %q{
     end
   end
 
+  describe 'mulitple sessions', js: true do
+    scenario "answer appears on another user's page" do
+      Capybara.using_session('user') do
+        sign_in(user)
+        visit question_path(question)
+      end
+
+      Capybara.using_session('guest') do
+        visit question_path(question)
+      end
+
+      Capybara.using_session('user') do
+        fill_in t('activerecord.attributes.answer.body'), with: 'answer text'
+        click_on t('forms.submit_answer')
+
+        within '.answers' do
+          expect(page).to have_content 'answer text'
+        end
+      end
+
+      Capybara.using_session('guest') do
+        expect(page).to have_content 'answer text'
+      end
+    end
+  end
+
   scenario "Un authenticated user tries create answer" do
     visit question_path(question)
     expect(page).to have_link "If you want answer the question u need to sign up"
