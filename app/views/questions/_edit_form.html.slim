@@ -12,6 +12,16 @@
   h1.q_title= @question.title
   p.q_body= @question.body
 
+  .comment-box
+    small= "comments:"
+    -if @question.comments.any?
+      =render @question.comments
+
+
+  -if user_signed_in?
+    .question-comment-form
+      = render 'comments/form', resource: Comment.new, url: question_comments_path(@question)
+
   -if @question.award
     p= "award name: #{@question.award.title}"
     = image_tag url_for(@question.award.image), title: @question.award.title, height: '30', width: '30'

@@ -28,6 +28,16 @@
       -if current_user&.author_of?(answer) && answer.persisted?
         = link_to "Edit answer", "#", class: "btn btn-outline-secondary edit-answer-link", data: { answer_id: answer.id }
 
+      .answer-comment-box
+        small= "comments:"
+        -if answer.comments.any?
+          =render answer.comments
+
+
+      -if user_signed_in?
+        .answer-comment-form
+          = render 'comments/form', resource: Comment.new, url: answer_comments_path(answer)
+
         =form_for answer, remote: true, html: { class: 'col-4 hidden', id: "edit-answer-#{answer.id}" } do |f|
           p
             =f.label :body, class: 'form-label'
