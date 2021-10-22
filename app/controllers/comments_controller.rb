@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
+  after_action :publish_comment, only: :create
+
   def create
     @comment = commentable.comments.new(comment_params.merge(user: current_user))
     @comment.save
@@ -22,6 +24,13 @@ class CommentsController < ApplicationController
   end
 
   def publish_comment
+    return if @comment.errors.any?
 
+    ActionCable.server.broadcast(
+      "question_#{question_id}_comments",
+      {
+        comment: @comment
+      }
+    )
   end
 end
