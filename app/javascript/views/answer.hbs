@@ -1,0 +1,19 @@
+ <div class="card col-5 mt-2" data-answer-node-id="{{answer.id}}">
+     <div class="card-body">
+         <p class="text-primary">{{answer.body}}</p>
+         {{#if links.lenght }}
+            <div>
+              {{#each links}}
+                <div class="links" data-link-id="{{this.id}}">
+                    <div class="card p-2 mt-2 col-4">
+                        <p class="text-succeess mt-2">
+                            Links
+                            <div class="list-group-item"><a href="{{this.url}}">{{this.name}}</a></div>
+                        </p>
+                    </div>
+                </div>
+              {{/each}}
+            </div>
+        {{/if}}
+     </div>
+ </div>

@@ -5,6 +5,8 @@ class Question < ApplicationRecord
   belongs_to :user
   has_many :answers, dependent: :destroy
 
+  has_many :comments, as: :commentable, dependent: :destroy
+
   has_one :award, dependent: :destroy
   accepts_nested_attributes_for :award, reject_if: :all_blank
 

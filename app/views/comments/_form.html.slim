@@ -1,0 +1,6 @@
+=form_for resource, url: url, remote: true, html: { class: "col-4"} do |f|
+  p
+    =f.label :body, class: "form-label"
+    =f.text_area :body, class: "form-control"
+  p
+    =f.submit "Comment", class: "btn btn-primary"

@@ -4,7 +4,8 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_answer, only: [:show, :edit, :update, :destroy, :choose_best]
   before_action :set_question, only: [:create]
-  # before_action :ensure_current_user_author_of_answer!, only: [:create, :update]
+
+  after_action :publish_answer, only: [:create]
 
   def show; end
 
@@ -12,9 +13,6 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new(answer_params)
     @answer.user = current_user
     @answer.save
-    # if @answer.save
-    #   redirect_to question_path(@question), notice: "Your answer successfully created"
-    # end
   end
 
   def edit; end
@@ -55,5 +53,17 @@ class AnswersController < ApplicationController
   def ensure_current_user_author_of_question!
     return current_user.author_of?(@answer.question)
     redirect_to root_path, notice: "You are not author of #{@answer.question}"
+  end
+
+  def publish_answer
+    return if @answer.errors.any?
+
+    ActionCable.server.broadcast(
+      "question_#{@question.id}_answers",
+      {
+        answer: @answer,
+        links: @answer.links
+      }
+    )
   end
 end
