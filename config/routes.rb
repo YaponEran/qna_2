@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    omniauth_callbacks: 'oauth_callbacks'
+    omniauth_callbacks: 'oauth_callbacks',
+    confirmations: 'confirmations'
   }
 
   root to: "questions#index"
