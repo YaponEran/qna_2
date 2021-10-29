@@ -32,6 +32,11 @@ gem "cocoon"
 gem "gon", "~> 6.3"
 gem 'skim'
 
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -54,6 +59,7 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'letter_opener'
 end
 
 group :test do
