@@ -1,5 +1,6 @@
 h1= "Questions: #{@questions.count}"
 .questions
   =render @questions
-    
-p= link_to "Ask question", new_question_path, class: "btn btn-primary mt-3"
+
+-if can?(:create, Question)
+  p= link_to "Ask question", new_question_path, class: "btn btn-primary mt-3"
